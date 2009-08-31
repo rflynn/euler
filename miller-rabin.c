@@ -48,7 +48,10 @@ int miller_rabin(uint32_t n)
 
 void miller_rabin_init(void)
 {
+#ifndef NDEBUG
   printf("RAND_MAX=%u\n", RAND_MAX);
+#endif
+  /* unit tests */
   assert(miller_rabin(2));
   assert(miller_rabin(3));
   assert( miller_rabin(5));
@@ -68,8 +71,6 @@ void miller_rabin_init(void)
   assert( miller_rabin(92431UL));
   assert( miller_rabin(104729UL));
   assert( miller_rabin(2146435153UL));
-  assert(!miller_rabin((uint32_t)7 * 127 * 4830073)); /* 4293934897; highest uint32_t non-prime */
+  assert(!miller_rabin((uint32_t)(7 * 127 * 4830073UL))); /* 4293934897; highest uint32_t non-prime */
 }
-
-
 
