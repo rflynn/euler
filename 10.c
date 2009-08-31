@@ -24,6 +24,6 @@ int main(void)
   miller_rabin_init();
   sum_primes_below(10);
   sum_primes_below(2000000);
-	return 0;
+  return 0;
 }
 

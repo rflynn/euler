@@ -21,6 +21,6 @@ int main(void)
 {
   nth_prime(6);
   nth_prime(10001);
-	return 0;
+  return 0;
 }
 
