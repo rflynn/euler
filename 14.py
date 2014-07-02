@@ -17,64 +17,40 @@ Which starting number, under one million, produces the longest chain?
 NOTE: Once the chain starts the terms are allowed to go above one million.
 """
 
-def collatz(n):
-    c = [n]
-    while n > 1:
-        if n & 1 == 0:
-            n = n // 2
-        else:
-            n = 3 * n + 1
-        c.append(n)
-    return c
-
-"""
-longest = [1]
-for n in range(2, 1000000+1):
-    c = collatz(n)
-    if len(c) > len(longest):
-        longest = c
-        print "longest:", longest
-"""
-
 def collatz_memoize(hi):
     d = {}
-    while hi > 1:
-        if hi not in d:
-            n = hi
-            while n > 1 and n not in d:
-                if n & 1 == 0:
-                    x = n // 2
-                else:
-                    x = 3 * n + 1
-                d[n] = x
-                n = x
-        hi -= 1
+    for n in xrange(hi, 1, -1):
+        while n > 1 and n not in d:
+            c = 3*n+1 if n & 1 else n >> 1 # memoize
+            d[n] = c
+            n = c
     return d
 
+# TODO: if we reversed the paths we could find this much more cheaply
 def path_len(collatz, lx, n):
     l = 1
     orign = n
-    while n > 1:
-        if n in lx:
-            l += lx[n]
-            break
-        else:
-            n = collatz[n]
-            l += 1
+    while n > 1 and n not in lx:
+        n = collatz[n]
+        l += 1
     lx[orign] = l # memoize path_len in lx
+    l += lx[n]
     return l
 
 x = 1000000
-a = collatz_memoize(x)
+c = collatz_memoize(x)
 lx = {}
-m, l = 1, path_len(a, lx, 1)
+m, l = 1, path_len(c, lx, 1)
 for m2 in xrange(2, x + 1):
-    l2 = path_len(a, lx, m2)
+    l2 = path_len(c, lx, m2)
     if l2 > l:
         print "%s -> %s" % (m2, l2)
         m = m2
         l = l2
+
 print m
+print len(c)
+print max(c.keys())
 
 #from pprint import pprint
 #pprint(a)
