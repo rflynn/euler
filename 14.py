@@ -27,10 +27,62 @@ def collatz(n):
         c.append(n)
     return c
 
+"""
 longest = [1]
 for n in range(2, 1000000+1):
     c = collatz(n)
     if len(c) > len(longest):
         longest = c
         print "longest:", longest
+"""
+
+def collatz_memoize(hi):
+    d = {}
+    while hi > 1:
+        if hi not in d:
+            n = hi
+            while n > 1 and n not in d:
+                if n & 1 == 0:
+                    x = n // 2
+                else:
+                    x = 3 * n + 1
+                d[n] = x
+                n = x
+        hi -= 1
+    return d
+
+def path_len(collatz, lx, n):
+    l = 1
+    orign = n
+    while n > 1:
+        if n in lx:
+            l += lx[n]
+            break
+        else:
+            n = collatz[n]
+            l += 1
+    lx[orign] = l # memoize path_len in lx
+    return l
+
+x = 1000000
+a = collatz_memoize(x)
+lx = {}
+m, l = 1, path_len(a, lx, 1)
+for m2 in xrange(2, x + 1):
+    l2 = path_len(a, lx, m2)
+    if l2 > l:
+        print "%s -> %s" % (m2, l2)
+        m = m2
+        l = l2
+print m
+
+#from pprint import pprint
+#pprint(a)
+
+"""
+print "digraph {"
+for k,v in a.items():
+    print "%s -> %s" % (k, v)
+print "}"
+"""
 
