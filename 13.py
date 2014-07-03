@@ -3,8 +3,6 @@
 # Work out the first ten digits of the sum of the following
 # one-hundred 50-digit numbers.
 
-from operator import add
-
 N = [
   37107287533902102798797998220837590246510135740250,
   46376937677490009712648124896970078050417018260538,
@@ -109,7 +107,7 @@ N = [
 ]
 
 assert str(123)[0:1] == '1'
-assert str(reduce(add,[1,2,3]))[0:1] == '6'
+assert str(sum([1,2,3])))[0:1] == '6'
 
-print str(reduce(add,N))[0:10]
+print str(sum(N))[0:10]
 
