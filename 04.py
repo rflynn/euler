@@ -28,9 +28,9 @@ while i >= 100:
         while j >= 100:
                 n = i * j
                 if is_palindrome(n):
-                        print "%u x %u = %u" % (i,j,n)
+                        print("%u x %u = %u" % (i,j,n))
                         p.append(n)
                 j = j-1
         i = i-1
-print p
-print max(p)
+print(p)
+print(max(p))

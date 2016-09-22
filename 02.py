@@ -6,14 +6,14 @@
 # exceed four million.
 
 # build fibonacci sequence to limit
-# luckily it's short
-fib = [1,2]
+# luckily it's short:
+
+fib = [1, 2]
 while fib[-1] + fib[-2] <= 4000000:
         fib.append(fib[-1] + fib[-2])
-print fib
+print(fib)
 
-even = filter(lambda n: n % 2 == 0, fib)
-print even
-
-print sum(even)
+even = [n for n in fib if n % 2 == 0]
+print(even)
+print(sum(even))
 

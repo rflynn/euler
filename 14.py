@@ -19,7 +19,7 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 def collatz_memoize(hi):
     d = {}
-    for n in xrange(hi, 1, -1):
+    for n in range(hi, 1, -1):
         while n > 1 and n not in d:
             c = 3*n+1 if n & 1 else n >> 1 # memoize
             d[n] = c
@@ -41,16 +41,16 @@ x = 1000000
 c = collatz_memoize(x)
 lx = {}
 m, l = 1, path_len(c, lx, 1)
-for m2 in xrange(2, x + 1):
+for m2 in range(2, x + 1):
     l2 = path_len(c, lx, m2)
     if l2 > l:
-        print "%s -> %s" % (m2, l2)
+        print("%s -> %s" % (m2, l2))
         m = m2
         l = l2
 
-print m
-print len(c)
-print max(c.keys())
+print(m)
+print(len(c))
+print(max(c.keys()))
 
 #from pprint import pprint
 #pprint(a)

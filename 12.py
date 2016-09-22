@@ -26,21 +26,21 @@ import math
 # return list of (non-prime) factors of n
 # NOTE: brute-force method, slow.
 def factors(n):
-  f = [1,n]
-  for i in xrange(2, int(math.sqrt(n))+1):
-    if n % i == 0:
-      f.append(i)
-      f.append(int(n/i))
-  f.sort()
-  return f
+    f = [1,n]
+    for i in range(2, int(math.sqrt(n))+1):
+        if n % i == 0:
+            f.append(i)
+            f.append(int(n/i))
+    f.sort()
+    return f
 
 # factor n, maintain a count instead of a list
 def factors2(n):
-  cnt = 2
-  for i in xrange(2, int(math.sqrt(n))+1):
-    if n % i == 0:
-      cnt += 2
-  return cnt
+    cnt = 2
+    for i in range(2, int(math.sqrt(n))+1):
+        if n % i == 0:
+            cnt += 2
+    return cnt
 
 # check factors()
 assert factors(1)  == [1,1]
@@ -58,17 +58,17 @@ assert factors(25) == [1,5,5,25]
 assert factors(12) == [1,2,3,4,6,12]
 assert factors(60) == [1,2,3,4,5,6,10,12,15,20,30,60]
 
-print "assertions passed"
+print("assertions passed")
 
 tri = 0
 i = 1
 cnt = 0
 
 while cnt <= 500:
-  tri += i
-  cnt = factors2(tri)
-  i += 1
+    tri += i
+    cnt = factors2(tri)
+    i += 1
 
-print "%12u: (%u factors)" % (tri, cnt)
-print factors(tri)
+print("%12u: (%u factors)" % (tri, cnt))
+print(factors(tri))
 

@@ -36,13 +36,14 @@ assert len(G) == 20*20
 # dump 2D grid, highlighting some items
 # this is for debugging.
 def dump(G, size, hlidx, hlstep, hlcnt):
-  hl = [ idx for idx in range(hlidx, hlidx+(hlstep*hlcnt), hlstep) ]
-  for x in xrange(0, size):
-    for y in xrange(0, size):
-      print "%2u%s" % (G[x*size+y], \
-        (" ","*")[x*size+y in hl]),
-    print ""
+    hl = [ idx for idx in range(hlidx, hlidx+(hlstep*hlcnt), hlstep) ]
+    for x in range(0, size):
+        for y in range(0, size):
+            print("%2u%s" % (G[x*size+y], \
+                (" ", "*")[x*size+y in hl]), end=' ')
+        print("")
 
+from functools import reduce
 from operator import mul
 
 # each of the methods of defining adjacent sublists (up, down, left, right,
@@ -51,18 +52,18 @@ from operator import mul
 # run a named pattern at a given step, looking for sublist of a given cnt
 # whose product is >max
 def pattern(name, G, step, cnt, max):
-  for i in xrange(0, len(G) - (cnt * step) + step):
-    # candidate sublist
-    cand = [G[x] for x in range(i, i+(cnt*step), step)]
-    prod = reduce(mul, cand)
-    if prod > max:
-      print "%s i=%u prod=%u %s" % (name, i, prod, cand)
-      dump(G, 20, i, step, cnt) # 20 hardcoded, naughty naughty
-      max = prod
-  print "%s max=%u" % (name, max)
-  return max
+    for i in range(0, len(G) - (cnt * step) + step):
+        # candidate sublist
+        cand = [G[x] for x in range(i, i+(cnt*step), step)]
+        prod = reduce(mul, cand)
+        if prod > max:
+            print("%s i=%u prod=%u %s" % (name, i, prod, cand))
+            dump(G, 20, i, step, cnt) # 20 hardcoded, naughty naughty
+            max = prod
+            print("%s max=%u" % (name, max))
+    return max
 
-print "Grid"
+print("Grid")
 dump(G, 20, 500, 500, 500)
 
 max = pattern("horz", G,  1, 4, 0)

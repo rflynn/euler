@@ -16,18 +16,17 @@
 import math
 import os
 
-assert 0<1<2
+assert 0 < 1 < 2
 
-for a in xrange(1,1000):
-  for b in xrange(a+1,1000):
-    csq = a**2 + b**2
-    c = math.sqrt(csq)
-    assert a<b<c
-    if c != math.floor(c):
-      continue # sqrt(a^2+b^2) not natural
-    print "%3u^2 + %3u^2 = %3.0f^2 ... %3u + %3u +%4u = %4.0f" % \
-      (a,b,c, a,b,c, a+b+c)
-    if a+b+c == 1000:
-      print "%u * %u * %.0f = %.0f" % (a,b,c, a*b*c)
-      os._exit(0)
+for a in range(1, 1000):
+    for b in range(a + 1, 1000):
+        c = math.sqrt(a**2 + b**2)
+        assert a < b < c
+        if c != math.floor(c):
+            continue  # sqrt(a^2+b^2) not natural
+        print('%3u^2 + %3u^2 = %3.0f^2 ... %3u + %3u +%4u = %4.0f' % (
+            a, b, c, a, b, c, a + b + c))
+        if a + b + c == 1000:
+            print('%u * %u * %.0f = %.0f' % (a, b, c, a * b * c))
+            os._exit(0)
 

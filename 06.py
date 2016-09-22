@@ -15,7 +15,7 @@
 import math
 
 # obvious, bruteforce method
-sumsq = sum([n**2 for n in xrange(1,101)])
-sqsum = sum([n for n in xrange(1,101)])**2
-print "sumsq=%u sqsum=%u diff=%u" % (sumsq, sqsum, sqsum - sumsq)
+sumsq = sum([n**2 for n in range(1, 101)])
+sqsum = sum([n for n in range(1, 101)])**2
+print("sumsq=%u sqsum=%u diff=%u" % (sumsq, sqsum, sqsum - sumsq))
 
