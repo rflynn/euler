@@ -1,0 +1,6 @@
+*.sw[op]
+*.o
+venv/
+# stand-alone programs
+07
+10
